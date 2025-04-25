@@ -44,6 +44,16 @@
         The interface should allow the user to input values for the initial balance, desired ending balance, mean, and standard deviation.
         The interface should include a button, that when clicked should perform the simulation and
         and display the resulting number of years and actual ending balance on the page.
+
+        <h3>Custom Simulation</h3>
+<label>Initial Balance: $<input id="initial-balance" type="number" value="150000"></label><br>
+<label>Desired Ending Balance: $<input id="ending-balance" type="number" value="1000000"></label><br>
+<label>Mean Annual Return (%): <input id="mean-return" type="number" value="8" step="0.1"></label><br>
+<label>Standard Deviation (%): <input id="stddev-return" type="number" value="15" step="0.1"></label><br>
+<button onclick="runSimulation()">Run Simulation</button>
+
+<p id="simulation-results"></p>
+
     </p>
 
 
@@ -97,6 +107,36 @@
         console.log("---------------------")
         console.log("PART 3...")
 
+        function runSimulation() {
+    var startBalance = parseFloat(document.getElementById("initial-balance").value)
+    var targetBalance = parseFloat(document.getElementById("ending-balance").value)
+    var mean = parseFloat(document.getElementById("mean-return").value) / 100
+    var stddev = parseFloat(document.getElementById("stddev-return").value) / 100
+
+    var balance = startBalance
+    var year = 0
+    var rateGenerator = d3.randomNormal(mean, stddev)
+    var returns = []
+
+    while (balance < targetBalance) {
+        var rate = rateGenerator()
+        returns.push((rate * 100).toFixed(2) + "%")
+        year = year + 1
+        balance = balance * (1 + rate)
+    }
+
+    console.log("Custom Simulation:")
+    console.log("Years:", year)
+    console.log("Ending Balance:", formatUSD(balance))
+    console.log("Annual Returns:", returns)
+
+    document.getElementById("simulation-results").innerHTML = `
+        <strong>Results:</strong><br>
+        Years: ${year}<br>
+        Ending Balance: ${formatUSD(balance)}<br>
+        Annual Returns: ${returns.join(', ')}
+    `
+} 
 
 
 
