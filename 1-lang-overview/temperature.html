@@ -90,11 +90,12 @@
 
         console.log("---------------------")
         console.log("PART 3...")
-
-        document.getElementById("calculate").addEventListener("click", function() {
-    var inputC = parseFloat(document.getElementById("input-temp-c").value)
-    var outputF = calculateTemp(inputC)
-    document.getElementById("display-temp-f").textContent = outputF.toFixed(2)
+        
+        var button = document.getElementById("calculate")
+button.addEventListener("click", function() {
+    var inputTemp = document.getElementById("input-temp-c").value
+    var result = calculateTemp(parseFloat(inputTemp))
+    document.getElementById("display-temp-f").textContent = result
 })
 
 
