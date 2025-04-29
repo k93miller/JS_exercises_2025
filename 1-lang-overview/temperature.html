@@ -66,39 +66,41 @@
 
 
         var tempC = -270
+        console.log("TEMP C:", tempC)
         var tempF = (9 / 5) * tempC + 32
-
-        console.log("Celsius:", tempC)
-        console.log("Fahrenheit:", tempF)
+        console.log("TEMP F:", tempF)
+        
+        
 
 
 
         console.log("---------------------")
         console.log("PART 2...")
 
-        function calculateTemp(tempC) {
-        return (9 / 5) * tempC + 32
-}
+        function convertTemp(c){
+            return (9 / 5) * c + 32
+        }
 
-        var convertedTemp = calculateTemp(-270)
-
-        console.log("Celsius:", -270)
-        console.log("Fahrenheit (from function):", convertedTemp)
-
-
+        var tempC = -270
+        console.log("TEMP C:", tempC)
+        var tempF = convertTemp(tempC)
+        console.log("TEMP F:", tempF)
 
 
-        console.log("---------------------")
+        console.log("----------------------")
         console.log("PART 3...")
-        
-        var button = document.getElementById("calculate")
-button.addEventListener("click", function() {
-    var inputTemp = document.getElementById("input-temp-c").value
-    var result = calculateTemp(parseFloat(inputTemp))
-    document.getElementById("display-temp-f").textContent = result
-})
 
+        var inputTempC = document.getElementById("input-temp-c")
+        var calcButton = document.getElementById("calculate")
+        var displayTempF = document.getElementById("display-temp-f")
 
+        function submitForm(params) {
+            var tempC = inputTempC.value
+            var tempF = convertTemp(tempC)
+
+            displayTempF.innerHTML = tempF
+        }
+        calcButton.addEventListener("click", submitForm, false)
 
     </script>
 </body>
