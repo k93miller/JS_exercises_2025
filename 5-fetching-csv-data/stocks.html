@@ -93,9 +93,21 @@
 
             console.log("---------------------")
             console.log("PART 1...")
+            
+            console.log("NUM DAYS:", data.length)
 
+            var latest = data[0]
+            //console.log(latest)
+            console.log("LATEST:", latest["timestamp"], latest["adjusted_close"])
 
+            var earliest = data[data.length - 1]
+            console.log("EARLIEST:", earliest["timestamp"], earliest["adjusted_close"])
 
+            // percent change = (final - initial) / initial
+            var latestClose = parseFloat(latest["adjusted_close"])
+            var earliestClose = parseFloat(earliest["adjusted_close"])
+            var pctChange = (latestClose - earliestClose) / earliestClose
+            console.log("RETURN / PCT CHANGE:", pctChange)  
 
 
             console.log("---------------------")
