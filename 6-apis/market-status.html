@@ -92,14 +92,43 @@
             console.log("---------------------")
             console.log("PART 1...")
 
+            console.log("MARKETS:", data.markets.length)
 
+            var equityMarkets = data.markets.filter(function(market){
+                return market.market_type == "Equity"
+            })
+
+            console.log("EQUITY MARKETS:", equityMarkets.length)
+
+            equityMarkets.forEach(Market => {
+                console.log("...", `${market.region} (${market.market_type})`)
+            })
+
+            var regions = "United States"
+            console.log(region)
+
+            var market = equityMarkets.find(function(market){
+                return market.region == region
+            })
+
+            console.log(market.market_type)
+            console.log(market.primary_exchanges)
+            console.log(market.local_open)
+            console.log(market.local_close)
+            console.log(market.current_status.toUpperCase())
 
 
 
             console.log("---------------------")
             console.log("PART 2...")
 
-
+            displayRegion.innerText = market.region
+            displayType.innerText = market.market_type
+            displayExchanges.innerText = market.primary_exchanges
+            displayOpen.innerText = market.local_open
+            displayClose.innerText = market.local_close
+            displayStatus.innerText = market.current_status.toUpperCase()
+            
 
 
         }).catch(function(error) {
